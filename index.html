@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JOB APPLICATION</title>
+        <style>
+            .container {
+                display: flex;
+                flex-direction: row;
+                gap: 500px;
+            }
+            .text {
+                font-weight: bold;
+                font-size: 25px;
+            }
+            .button_1, .special_1, .special_2, .special_3 {
+                height: 50px;
+                width: 500px;
+                text-align: left;
+                font-size: 16px;
+                padding-left: hoose a job10px;
+            }
+            /* Style for input when editing button text */
+            .edit-mode {
+                width: 400px;
+                height:30px;
+                font-size: 16px;
+                padding-left: 10px;
+            }
+            .dropdown a{
+    text-decoration: none;
+    display :block;
+    font-size: 20px;
+    color: black;
+}
+.dropdown .content
+{
+    position: absolute;
+    display: none;
+    transition: 1s;
+}
+.dropdown:hover .content
+{
+    display: block;
+    background-color:rgba(128, 128, 128, 0.531);
+    box-shadow: 2px 2px 0.2px black;
+    cursor: pointer;
+}
+.dropdown
+{
+    display: inline-block;
+}
+        </style>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1 style="font-size:40px">JOB APPLICATION (WEB)</h1>
+        
+        <div class="container">
+            <div>
+                <p class="text">First Name</p>
+                <button class="button_1" onclick="enableEdit(this)">Enter First Name</button>
+            </div>
+            <div>
+                <p class="text">Second Name</p>
+                <button class="button_1" onclick="enableEdit(this)">Enter Last Name</button>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div>
+                <p class="text">Email</p>
+                <button class="button_1" onclick="enableEdit(this)">Enter Email</button>
+            </div>
+            <div>
+                <p class="text">Job Role</p>
+                <div class="dropdown">
+                <button class="special_1" id="jobbutton">Click Job</button>
+                <div class="content">
+                    <a onclick="updatebuttontext('jobbutton','SDE-1')"> SDE-1</a>
+                    <a onclick="updatebuttontext('jobbutton','SDE-2')"> SDE-2</a>
+                    <a onclick="updatebuttontext('jobbutton','Electrician')"> Electrician</a>
+                </div>
+                </div>
+            </div>
+        </div>
+        <p class="text">Enter Address</p>
+        <button class="button_1" onclick="enableEdit(this)">Enter Address</button>
+        
+        <div class="container">
+            <div>
+                <p class="text">City</p>
+                <div class="dropdown">
+                    <button class="special_1" id="citybutton">City</button>
+                    <div class="content">
+                        <a onclick="updatebuttontext('citybutton','Kuthia')"> Kuthia </a>
+                        <a onclick="updatebuttontext('citybutton','Punjab')"> Punjab</a>
+                        <a onclick="updatebuttontext('citybutton','Ludhiana')"> Ludhiana </a>
+                    </div>
+                    </div>
+            </div>
+            <div>
+                <p class="text">Pincode</p>
+                <button class="special_2" onclick="enableEdit(this)">Enter Pincode</button>
+            </div>
+        </div>
+
+        <script>
+            function enableEdit(button) {
+                // Create an input element to replace the button's text
+                const input = document.createElement("input");
+                input.value = button.textContent; // Set the current text as the value
+                input.className = "edit-mode"; // Add class for styling
+                button.textContent = ''; // Clear the current button text
+                button.appendChild(input); // Append the input inside the button
+
+                // Focus on the input for the user to type
+                input.focus();
+
+                // When the user presses Enter, the text is updated
+                input.addEventListener("blur", function() {
+                    button.textContent = input.value; // Replace the input field with its value
+                });
+
+                // Optionally, handle "Enter" key press to update the text
+                input.addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        button.textContent = input.value; // Update button text when Enter is pressed
+                    }
+                });
+            }
+            function updatebuttontext(buttonId,text)
+            {
+                const button=document.getElementById(buttonId);
+                button.textContent=text;
+            }
+        </script>
+    </body>
+</html>
